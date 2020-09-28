@@ -1,3 +1,25 @@
+# Run CIFAR10 with DAA Blob Rand Attack
+
+start docker
+
+```
+docker run --name daaattak --rm --gpus '"device=0,1"' -it -v ~/Documents/cifar10_challenge/:/home/cifar10_challenge/ -v ~/Documents/Distributionally-Adversarial-Attack/:/home/Distributionally-Adversarial-Attack/ tensorflow/daa_attack
+```
+
+**Generate Adversarial Example using DAA BLOB**
+```python
+python blob_rand_cifar.py
+```
+The command will generate adversarial images, saved at `attack.npy`
+
+**Running the Evaluation**
+```python
+python run_attack
+```
+The command will run evaluation on `attack.npy` and return the result on `pred.npy`
+
+
+
 # CIFAR10 Adversarial Examples Challenge
 
 Recently, there has been much progress on adversarial *attacks* against neural networks, such as the [cleverhans](https://github.com/tensorflow/cleverhans) library and the code by [Carlini and Wagner](https://github.com/carlini/nn_robust_attacks).
